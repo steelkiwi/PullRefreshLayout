@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="refresh_layout_bottom_margin">65dp</dimen>
+    <dimen name="progress_bar_height">65dp</dimen>
+    //
+    <dimen name="progress_item_height">23dp</dimen>
+    <dimen name="progress_item_width">3dp</dimen>
+    <dimen name="offset_top">15dp</dimen>
+    <dimen name="rectangle_corner_radius">2dp</dimen>
+</resources>
