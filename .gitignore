@@ -1,7 +1,7 @@
 *.iml
 .gradle
 /local.properties
-/.idea*
+.idea/
 /.idea/workspace.xml
 /.idea/libraries
 .DS_Store
@@ -35,10 +35,6 @@ proguard/
 
 # Log Files
 *.log
-
-
-## Directory-based project format:
-.idea/
 
 ## File-based project format:
 *.ipr
