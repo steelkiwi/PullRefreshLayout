@@ -4,7 +4,7 @@ Simple container for refresh list after pull event
 
 # View
 
-![](https://media.giphy.com/media/3oKIPAtHdooKTbpey4/giphy.gif)
+![](https://media.giphy.com/media/xUPGcGbdhxMrwY0Qnu/giphy.gif)
 
 # Download
 
