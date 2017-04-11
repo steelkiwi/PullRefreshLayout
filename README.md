@@ -4,6 +4,8 @@ Simple container for refresh list after pull event
 
 # View
 
+![](https://media.giphy.com/media/3oKIPAtHdooKTbpey4/giphy.gif)
+
 # Download
 
 Download via Gradle:
