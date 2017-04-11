@@ -9,43 +9,84 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import steelkiwi.com.library.view.RefreshContainer;
+import steelkiwi.com.pullrefreshlayout.rest.RestService;
+import steelkiwi.com.pullrefreshlayout.rest.dto.PixabayResponse;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TestAdapter adapter;
+    private RefreshContainer refreshContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final RefreshContainer refreshContainer = (RefreshContainer) findViewById(R.id.refreshContainer);
+        refreshContainer = (RefreshContainer) findViewById(R.id.refreshContainer);
 
         RecyclerView recycler = (RecyclerView) findViewById(R.id.recycler);
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        final TestAdapter adapter = new TestAdapter(this);
+        adapter = new TestAdapter(this);
         recycler.setLayoutManager(manager);
         recycler.setAdapter(adapter);
-        adapter.setContent(getMokeData(10));
+        getImages();
 
         refreshContainer.setListener(new RefreshContainer.OnRefreshListener() {
 
             @Override
             public void onRefresh() {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    adapter.setContent(getMokeData(50));
-                    refreshContainer.finishRefreshing();
-                }
-            }, 5000);
+                updateImages();
             }
         });
     }
 
-    private List<String> getMokeData(int count) {
-        List<String> list = new ArrayList<>();
-        for(int i = 0; i < count; i++) {
-            list.add("");
-        }
-        return list;
+    private void getImages() {
+        RestService.createRestService()
+                .getImages("5070557-61ad97e52a18d63d0ae824fa7")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<PixabayResponse>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(PixabayResponse pixabayResponse) {
+                        adapter.setContent(pixabayResponse.getHits());
+                    }
+                });
+    }
+
+    private void updateImages() {
+        RestService.createRestService()
+                .getImages("5070557-61ad97e52a18d63d0ae824fa7")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<PixabayResponse>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(PixabayResponse pixabayResponse) {
+//                        adapter.setContent(pixabayResponse.getHits());
+                        refreshContainer.finishRefreshing();
+                    }
+                });
     }
 }

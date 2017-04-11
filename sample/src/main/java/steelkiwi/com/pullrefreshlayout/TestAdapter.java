@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.wasabeef.picasso.transformations.BlurTransformation;
+import steelkiwi.com.pullrefreshlayout.rest.dto.Hit;
 
 /**
  * Created by yaroslav on 2/22/17.
@@ -20,7 +21,7 @@ import jp.wasabeef.picasso.transformations.BlurTransformation;
 public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
 
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private List<Hit> list = new ArrayList<>();
 
 
     public TestAdapter(Context context) {
@@ -35,12 +36,12 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final String str = list.get(position);
-        if(str != null && !str.isEmpty()) {
-            holder.tvGeneralFeedTitle.setText(str);
+        final Hit hit = list.get(position);
+        String image = hit.getImage();
+        if(image != null) {
+            Picasso.with(context).load(image).into(holder.ivGeneralFeedImage);
+            Picasso.with(context).load(image).transform(new BlurTransformation(context)).into(holder.ivGeneralFeedImageBlur);
         }
-        Picasso.with(context).load(R.mipmap.bg).into(holder.ivGeneralFeedImage);
-        Picasso.with(context).load(R.mipmap.bg).transform(new BlurTransformation(context)).into(holder.ivGeneralFeedImageBlur);
     }
 
     @Override
@@ -48,7 +49,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
         return list.size();
     }
 
-    public void setContent(List<String> list){
+    public void setContent(List<Hit> list){
         this.list.clear();
         this.list.addAll(list);
         notifyDataSetChanged();
@@ -56,13 +57,11 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivGeneralFeedImage;
-        TextView tvGeneralFeedTitle;
         ImageView ivGeneralFeedImageBlur;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ivGeneralFeedImage = (ImageView) itemView.findViewById(R.id.ivGeneralFeedImage);
-            tvGeneralFeedTitle = (TextView) itemView.findViewById(R.id.tvGeneralFeedTitle);
             ivGeneralFeedImageBlur = (ImageView) itemView.findViewById(R.id.ivGeneralFeedImageBlur);
         }
     }

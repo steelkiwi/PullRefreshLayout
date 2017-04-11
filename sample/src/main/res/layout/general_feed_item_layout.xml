@@ -13,49 +13,20 @@
         android:layout_margin="15dp"
         app:cardElevation="10dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
+            <ImageView
+                android:id="@+id/ivGeneralFeedImageBlur"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".72">
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
 
-                <ImageView
-                    android:id="@+id/ivGeneralFeedImageBlur"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"/>
-
-                <ImageView
-                    android:id="@+id/ivGeneralFeedImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerInside"/>
-            </RelativeLayout>
-
-            <LinearLayout
+            <ImageView
+                android:id="@+id/ivGeneralFeedImage"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                android:layout_weight=".28">
-
-                <TextView
-                    android:id="@+id/tvGeneralFeedTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_5"
-                    android:layout_marginBottom="@dimen/dimen_10"
-                    android:textSize="@dimen/text_size_16"
-                    android:singleLine="true"
-                    android:textColor="@android:color/black"
-                    android:layout_marginRight="@dimen/dimen_15"
-                    android:layout_marginLeft="@dimen/dimen_15"
-                    android:gravity="start"/>
-            </LinearLayout>
-        </LinearLayout>
+                android:layout_height="match_parent" />
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>
