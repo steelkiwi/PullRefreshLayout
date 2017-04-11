@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateImages() {
         RestService.createRestService()
-                .getImages(getString(R.string.key))
+                .getImages("5070557-61ad97e52a18d63d0ae824fa7")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<PixabayResponse>() {
