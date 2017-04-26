@@ -4,7 +4,7 @@ Simple container for refresh list after pull event
 
 # View
 
-![](https://media.giphy.com/media/l0Iy8lGBzMj9SfmSc/giphy.gif)
+![](https://github.com/steelkiwi/PullRefreshLayout/blob/master/assets/pull-refresh-layout-animation.gif)
 
 # Download
 
